@@ -34,7 +34,7 @@ To build and run the project:
 1. Ensure you have Java 17 and Maven installed
 2. Clone the repository
 3. Run `mvn clean install` to build the project
-4. Execute the main class with `java -cp target/phlang-1.0-SNAPSHOT.jar com.pedrodev.Main`
+4. Execute the main class with `java -cp target/phlang-1.0-SNAPSHOT.jar com.pedrodev.Ph`
 
 ## Future Development
 
