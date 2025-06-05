@@ -1,6 +1,6 @@
 package com.pedrodev.interpreter;
 
-import com.pedrodev.paser.Bynary;
+import com.pedrodev.paser.Binary;
 import com.pedrodev.paser.Expr;
 import com.pedrodev.paser.Literal;
 
@@ -15,7 +15,7 @@ public class AstTreePrinter implements ExprVisitor<Void> {
     }
 
     @Override
-    public Void visitBinary(Bynary expr) {
+    public Void visitBinary(Binary expr) {
         builder.append(indent).append("BinaryExpr ").append(expr.op().lexeme()).append("\n");
 
         indent += "  ";

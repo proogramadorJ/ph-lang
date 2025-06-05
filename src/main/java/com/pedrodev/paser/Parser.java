@@ -25,10 +25,10 @@ public class Parser {
 
     private Expr term() {
         Expr expr = factor();
-        while (match(TokenType.PLUS) || match(TokenType.MINUS)) {
+        while (match(TokenType.PLUS, TokenType.MINUS)) {
             Token op = tokens.get(pos - 1);
             Expr right = factor();
-            expr = new Bynary(expr, op, right);
+            expr = new Binary(expr, op, right);
         }
         return expr;
     }
@@ -38,7 +38,7 @@ public class Parser {
         while (match(TokenType.STAR) || match(TokenType.SLASH)) {
             Token op = tokens.get(pos - 1);
             Expr right = primary();
-            expr = new Bynary(expr, op, right);
+            expr = new Binary(expr, op, right);
         }
         return expr;
     }
@@ -47,11 +47,29 @@ public class Parser {
         return new Literal(tokens.get(pos++).literal());
     }
 
-    boolean match(TokenType tokenType) {
-        if (pos < tokens.size() && tokens.get(pos).type() == tokenType) {
-            pos++;
-            return true;
+    boolean match(TokenType... tokens) {
+        for (var tokenType : tokens) {
+            if (pos < this.tokens.size() && this.tokens.get(pos).type() == tokenType) {
+                pos++;
+                return true;
+            }
         }
         return false;
     }
+
+    void consume(TokenType type, String msg) {
+        if (pos < tokens.size() && tokens.get(pos).type() == type) {
+            pos++;
+            return;
+        }
+
+
+
+    }
+
+    //TODO depois testar algo como 1 + 2 + -> pq é esperado um operando depois do ultimo '+'
+    private Token peek(){
+        return tokens.get(pos) ;
+    }
+
 }

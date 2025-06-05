@@ -1,6 +1,7 @@
 package com.pedrodev;
 
 import com.pedrodev.interpreter.AstTreePrinter;
+import com.pedrodev.interpreter.Interpreter;
 import com.pedrodev.lexer.Token;
 import com.pedrodev.lexer.Tokenizer;
 import com.pedrodev.paser.Expr;
@@ -21,9 +22,14 @@ public class Ph {
         List<Token> tokens = tokenizer.scanTokens();
         Parser parser = new Parser(tokens);
         Expr ast = parser.parse();
+        Interpreter interpreter = new Interpreter();
+
 
 
         System.out.println(new AstTreePrinter().print(ast));
+        System.out.print(interpreter.intepreter(ast));
+
+
 
     }
 }
